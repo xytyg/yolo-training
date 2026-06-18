@@ -1,58 +1,69 @@
-# YOLO璁粌椤圭洰
+# YOLO训练项目
 
-杩欐槸涓€涓熀浜嶻OLO鐨勭洰鏍囨娴嬭缁冮」鐩紝鍖呭惈Python璁粌鑴氭湰鍜孋++ RTSP褰曡棰戠▼搴忋€?
-## 椤圭洰缁撴瀯
+这是一个基于YOLO的目标检测训练项目，包含Python训练脚本和C++ RTSP录视频程序。
+
+## 项目结构
 
 ```
-鈹溾攢鈹€ train.py              # YOLO璁粌鑴氭湰
-鈹溾攢鈹€ test.py               # 娴嬭瘯鑴氭湰
-鈹溾攢鈹€ CMakeLists.txt        # C++椤圭洰閰嶇疆
-鈹溾攢鈹€ src/
-鈹?  鈹溾攢鈹€ dataset/          # 璁粌鏁版嵁闆?鈹?  鈹溾攢鈹€ best26n1280.pt    # 鏈€浣虫ā鍨嬫潈閲?鈹?  鈹溾攢鈹€ yolo11s.pt        # YOLO11s妯″瀷
-鈹?  鈹溾攢鈹€ yolo26n.pt        # YOLO26n妯″瀷
-鈹?  鈹斺攢鈹€ yolo26s.pt        # YOLO26s妯″瀷
-鈹溾攢鈹€ runs/                 # 璁粌缁撴灉
-鈹斺攢鈹€ bin/                  # 缂栬瘧杈撳嚭
+├── train.py              # YOLO训练脚本
+├── test.py               # 测试脚本
+├── CMakeLists.txt        # C++项目配置
+├── src/
+│   ├── dataset/          # 训练数据集
+│   ├── best26n1280.pt    # 最佳模型权重
+│   ├── yolo11s.pt        # YOLO11s模型
+│   ├── yolo26n.pt        # YOLO26n模型
+│   └── yolo26s.pt        # YOLO26s模型
+├── runs/                 # 训练结果
+└── bin/                  # 编译输出
 ```
 
-## 鍔熻兘鐗规€?
-### Python璁粌鑴氭湰
-- 鍩轰簬ultralytics鐨刌OLO璁粌
-- 鏀寔澶氱妯″瀷鏋舵瀯锛圷OLO11s, YOLO26n, YOLO26s锛?- 鍙厤缃缁冨弬鏁帮紙epochs, batch size, learning rate绛夛級
+## 功能特性
 
-### C++ RTSP褰曡棰戠▼搴?- 浣跨敤OpenCV瀹炵幇RTSP娴佸綍鍒?- 鏀寔FFmpeg瑙ｇ爜
-- 鑷姩澶嶅埗杩愯鏃禗LL渚濊禆
+### Python训练脚本
+- 基于ultralytics的YOLO训练
+- 支持多种模型架构（YOLO11s, YOLO26n, YOLO26s）
+- 可配置训练参数（epochs, batch size, learning rate等）
 
-## 浣跨敤鏂规硶
+### C++ RTSP录视频程序
+- 使用OpenCV实现RTSP流录制
+- 支持FFmpeg解码
+- 自动复制运行时DLL依赖
 
-### Python璁粌
+## 使用方法
+
+### Python训练
 ```bash
 python train.py
 ```
 
-### C++缂栬瘧
+### C++编译
 ```bash
 mkdir build && cd build
 cmake ..
 cmake --build .
 ```
 
-## 渚濊禆
+## 依赖
 
 - Python 3.x
 - ultralytics (YOLO)
-- OpenCV 4.x (C++閮ㄥ垎)
+- OpenCV 4.x (C++部分)
 - CMake 3.16+
 
-## 璁粌閰嶇疆
+## 训练配置
 
-璁粌鍙傛暟鍦╜train.py`涓厤缃紝涓昏鍙傛暟锛?- `imgsz`: 杈撳叆鍥惧儚灏哄 (1280)
-- `batch`: 鎵规澶у皬 (4)
-- `epochs`: 璁粌杞暟 (100)
-- `patience`: 鏃╁仠鑰愬績鍊?(50)
-- `lr0`: 鍒濆瀛︿範鐜?(0.01)
+训练参数在`train.py`中配置，主要参数：
+- `imgsz`: 输入图像尺寸 (1280)
+- `batch`: 批次大小 (4)
+- `epochs`: 训练轮数 (100)
+- `patience`: 早停耐心值 (50)
+- `lr0`: 初始学习率 (0.01)
 
-## 鏁版嵁闆?
-鏁版嵁闆嗕綅浜巂src/dataset/`鐩綍锛岄厤缃枃浠朵负`data.yaml`銆?
-## 璁稿彲璇?
+## 数据集
+
+数据集位于`src/dataset/`目录，配置文件为`data.yaml`。
+
+## 许可证
+
 MIT License
