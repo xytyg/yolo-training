@@ -1,4 +1,4 @@
-from ultralytics import YOLO
+﻿from ultralytics import YOLO
 
 if __name__ == '__main__':
     # model = YOLO('E:/count/runs/detect/train-2/weights/last.pt') 
